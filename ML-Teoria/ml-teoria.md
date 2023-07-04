@@ -973,8 +973,8 @@ A następnie wytrenować model za pomocą metody ```fit()```. Metoda ta przyjmuj
 * ```batch_size```: Określa liczbę próbek, które są przetwarzane jednocześnie przez model w trakcie jednej iteracji.
 
 * ```epochs```: Określa liczbę **epok uczenia** - pełnych przebiegów przez zbiór treningowy. Każda epoka oznacza jedno przejście przez cały zbiór treningowy.
-
-* ```validation_data```: **Dane walidacyjne** używane do oceny wydajności modelu na każdej epoce. Może to być krotka (x_val, y_val) zawierająca dane wejściowe i oczekiwane wyjście dla danych walidacyjnych.
+* ```validation_split``` to samo co train_test_split
+* ```validation_data```: podajesz dane do testowania, nadpisuje powyższe **Dane walidacyjne** używane do oceny wydajności modelu na każdej epoce. Może to być krotka (x_val, y_val) zawierająca dane wejściowe i oczekiwane wyjście dla danych walidacyjnych.
 
 * ```callbacks```: Lista obiektów zwrotnych (callbacks), które są wywoływane podczas treningu w różnych momentach. Przykłady to ModelCheckpoint, EarlyStopping, TensorBoard itp. Callbacks pozwalają na dostosowywanie zachowania treningu w zależności od określonych warunków.
 * ```verbose```: Określa tryb wyświetlania informacji podczas treningu. Może przyjąć wartość 0 (bez wyświetlania), 1 (wyświetlanie paska postępu) lub 2 (wyświetlanie jednej linii na epokę).
@@ -1222,3 +1222,175 @@ Podczas unrollingu, sieć rekurencyjna jest rozwinięta wzdłuż osi czasu, twor
 * *Batch Normalization* nie jest przydatne
   * Jak już musisz to stosuj pomiędzy warstwami rekurencyjnymi
 * *Layer Normalization*
+
+
+# Zadania egzamin
+```
+Dla algorytmu K means (k=2) wylicz środku centroidów po 1szej iteracji. Inicjalne środki centroidów to: [0.00, 3.00]. Dane uczące X = [8.00, 1.00, 7.00, 9.00, 3.00, 9.00]. Opisz rozwiązanie krok po kroku
+
+ChatGPT
+Aby obliczyć środki centroidów po pierwszej iteracji algorytmu K-means dla k=2, należy przeprowadzić następujące kroki:
+
+Inicjalizacja środków centroidów: W tym przypadku inicjalne środki centroidów wynoszą [0.00, 3.00].
+
+Przypisanie punktów do klastrów: Dla każdego punktu w danych uczących X = [8.00, 1.00, 7.00, 9.00, 3.00, 9.00], obliczamy odległość do obu środków centroidów i przypisujemy punkt do klastra z bliższym środkiem centroida.
+
+Dla punktu 8.00: Odległość do środka centroida 0.00 wynosi 8.00, a odległość do środka centroida 3.00 wynosi 5.00. Punkt zostaje przypisany do klastra o środku centroida 3.00.
+Dla punktu 1.00: Odległość do środka centroida 0.00 wynosi 1.00, a odległość do środka centroida 3.00 wynosi 2.00. Punkt zostaje przypisany do klastra o środku centroida 0.00.
+Dla punktu 7.00: Odległość do środka centroida 0.00 wynosi 7.00, a odległość do środka centroida 3.00 wynosi 4.00. Punkt zostaje przypisany do klastra o środku centroida 3.00.
+Dla punktu 9.00: Odległość do środka centroida 0.00 wynosi 9.00, a odległość do środka centroida 3.00 wynosi 6.00. Punkt zostaje przypisany do klastra o środku centroida 3.00.
+Dla punktu 3.00: Odległość do środka centroida 0.00 wynosi 3.00, a odległość do środka centroida 3.00 wynosi 0.00. Punkt zostaje przypisany do klastra o środku centroida 3.00.
+Dla punktu 9.00: Odległość do środka centroida 0.00 wynosi 9.00, a odległość do środka centroida 3.00 wynosi 6.00. Punkt zostaje przypisany do klastra o środku centroida 3.00.
+Po przypisaniu wszystkich punktów do klastrów, otrzymujemy następujące przyporządkowanie:
+Klastry:
+
+Klastr 0: [1.00]
+Klastr 3: [8.00, 7.00, 9.00, 3.00, 9.00]
+Obliczanie nowych środków centroidów: Dla każdego klastra obliczamy nowy środek centroida, który jest równy średniej
+
+
+Obliczanie nowych środków centroidów: Dla każdego klastra obliczamy nowy środek centroida, który jest równy średniej wartości wszystkich punktów przypisanych do tego klastra.
+
+Dla klastra 0, mamy tylko jeden punkt o wartości 1.00, więc nowy środek centroida dla tego klastra wynosi 1.00.
+Dla klastra 3, mamy pięć punktów o wartościach 8.00, 7.00, 9.00, 3.00 i 9.00. Średnia wartość tych punktów wynosi (8.00 + 7.00 + 9.00 + 3.00 + 9.00) / 5 = 7.20. Więc nowy środek centroida dla tego klastra wynosi 7.20.
+Po obliczeniu nowych środków centroidów, otrzymujemy:
+Nowe środki centroidów:
+
+[1.00, 7.20]
+To jest wynik po pierwszej iteracji algorytmu K-means dla k=2. Możemy teraz kontynuować kolejne iteracje, powtarzając kroki 2 i 3, aby ostatecznie znaleźć stabilne środki centroidów.
+```
+```
+Aby obliczyć liczbę trenowalnych parametrów w każdej z warstw sieci gęstej, musimy wiedzieć, ile wag i biasów jest przypisanych do każdego neuronu w danej warstwie.
+
+Warstwa wejściowa składa się z 8 neuronów. Każdy neuron w warstwie wejściowej jest połączony z każdym neuronem w pierwszej warstwie ukrytej, dlatego liczba wag dla każdego neuronu w pierwszej warstwie ukrytej wynosi 8. Dodatkowo, dla każdego neuronu w pierwszej warstwie ukrytej mamy jeden bias. Stąd liczba parametrów w pierwszej warstwie ukrytej wynosi:
+
+Liczba parametrów w pierwszej warstwie ukrytej = (Liczba neuronów w pierwszej warstwie ukrytej) * (Liczba neuronów w warstwie wejściowej + 1) = 31 * (8 + 1) = 31 * 9 = 279.
+
+Analogicznie możemy obliczyć liczbę parametrów dla pozostałych warstw gęstych:
+
+Liczba parametrów w drugiej warstwie ukrytej = 19 * (31 + 1) = 19 * 32 = 608.
+
+Liczba parametrów w trzeciej warstwie ukrytej = 42 * (19 + 1) = 42 * 20 = 840.
+
+Liczba parametrów w czwartej warstwie ukrytej = 35 * (42 + 1) = 35 * 43 = 1505.
+
+Ostatecznie, łączna liczba parametrów w modelu to suma parametrów we wszystkich warstwach:
+
+Laczna liczba parametrów w modelu = Liczba parametrów w pierwszej warstwie ukrytej + Liczba parametrów w drugiej warstwie ukrytej + Liczba parametrów w trzeciej warstwie ukrytej + Liczba parametrów w czwartej warstwie ukrytej
+= 279 + 608 + 840 + 1505
+= 3232.
+
+Zatem, liczba trenowalnych parametrów w poszczególnych warstwach sieci gęstej oraz łączna liczba parametrów w modelu wynoszą:
+
+Warstwa gęsta 1: 279 parametrów
+Warstwa gęsta 2: 608 parametrów
+Warstwa gęsta 3: 840 parametrów
+Warstwa gęsta 4: 1505 parametrów
+Laczna liczba parametrów w modelu: 3232 parametry.
+
+
+
+PS:
+W równaniu Liczba parametrów w pierwszej warstwie ukrytej = (Liczba neuronów w pierwszej warstwie ukrytej) * (Liczba neuronów w warstwie wejściowej + 1), +1 jest dodawane, ponieważ dla każdego neuronu w warstwie ukrytej dodajemy dodatkowy bias.
+
+Bias jest wartością stałą dodawaną do sumy ważonych wejść neuronu, zanim zostanie zastosowana funkcja aktywacji. Bias jest reprezentowany przez jeden parametr dla każdego neuronu w warstwie, niezależnie od liczby neuronów w warstwie wejściowej.
+
+W równaniu, gdy mnożymy (Liczba neuronów w warstwie wejściowej + 1) przez (Liczba neuronów w pierwszej warstwie ukrytej), otrzymujemy sumę wag dla wszystkich połączeń między neuronami warstwy wejściowej a warstwą ukrytą, a także sumę wag dla biasów dla każdego neuronu w warstwie ukrytej.
+
+Dodając +1 do (Liczba neuronów w warstwie wejściowej), uwzględniamy bias jako jeden z parametrów w pierwszej warstwie ukrytej.
+```
+```
+Dana jest sieć zawierająca:
+- warstwę wejściową o 3 neuronach
+- jedną warstwę ukryta o 3 neuronach z funkcją aktywacji ReLU
+-warstwę wejściową o 1 neuronie z liniową funkcją aktywacji 
+Wagi połączeń warstwy ukrytej opisuje macierz:
+w = [[0.36, 0.63, -1.00], [0.10, 0.72. 0.10], [0.65, 0.16, -0.77]]
+ Wagi podane są w sposób analogiczny do tego w Keraz tzn poszczególne kolumny odnosza się do kolejnych neuronów warstwy ukrytej a kolejne wartości w wierszach kolumny modelują wagi połączeń danego neuronu warstwy ukrytej z kolejnymi neuronami warstwy wejśiowej, od lewej do prawej strony.
+
+Wagi warsty wejściowej (1 neuron) to:
+w_0 = [-0.58, 0.22, 0.59]
+Oblicz wyjście z sievi jeżeli na wejście zostanie podany wektor [0.00 0.00 1.00]. Zaprezentuj rozwiązanie krok po kroku
+
+ChatGPT
+Aby obliczyć wyjście sieci dla podanego wektora wejściowego [0.00, 0.00, 1.00], wykonajemy następujące kroki:
+
+Oblicz sumę ważoną dla neuronów warstwy ukrytej:
+h_1 = (0.00 * 0.36) + (0.00 * 0.10) + (1.00 * 0.65) = 0.65
+h_2 = (0.00 * 0.63) + (0.00 * 0.72) + (1.00 * 0.16) = 0.16
+h_3 = (0.00 * -1.00) + (0.00 * 0.10) + (1.00 * -0.77) = -0.77
+
+Zastosuj funkcję aktywacji ReLU na wynikach z kroku 1:
+a_1 = max(0, h_1) = max(0, 0.65) = 0.65
+a_2 = max(0, h_2) = max(0, 0.16) = 0.16
+a_3 = max(0, h_3) = max(0, -0.77) = 0 (ReLU zamienia wartość ujemną na zero)
+
+Oblicz sumę ważoną dla neuronu warstwy wyjściowej:
+o = (a_1 * -0.58) + (a_2 * 0.22) + (a_3 * 0.59) = (0.65 * -0.58) + (0.16 * 0.22) + (0 * 0.59)
+= -0.377 + 0.0352 + 0 = -0.3418
+
+Zwróć wyjście sieci, które jest równoważne wartości neuronu warstwy wyjściowej:
+output = o = -0.3418
+
+Dlatego dla podanego wektora wejściowego [0.00, 0.00, 1.00], wyjście sieci wynosi -0.3418.
+```
+```
+Dany jest wektor danych uczących  X = [0.39, 0.12, 0.73, 0.03, 0.69, 0.24] oraz odpowiadający mu wektor wartości y = [0.30, 0.09, 0.96, 0.84, 0.97, 0.08] 
+Używając metody najbliższych sąsiadów, dla k=3 policz oczekiwane wartości dla danych [0.21, 0.16].
+
+
+Metoda najbliższych sąsiadów (k-NN) polega na przewidywaniu wartości na podstawie wartości najbliższych sąsiadów. W przypadku k-NN, wybieramy k najbliższych sąsiadów do danego punktu i obliczamy średnią ich wartości, aby przewidzieć wartość dla danego punktu.
+
+Dane uczące mają wektor X = [0.39, 0.12, 0.73, 0.03, 0.69, 0.24] i odpowiadający mu wektor wartości y = [0.30, 0.09, 0.96, 0.84, 0.97, 0.08].
+
+Teraz obliczymy oczekiwane wartości dla danych x1 = 0.21 i x2 = 0.16, korzystając z metody k-NN dla k = 3.
+
+Kroki:
+
+Oblicz odległości między x1 a każdym punktem w zbiorze uczącym.
+
+Odległość(x1, x) = |x1 - x|
+Odległości dla x1:
+
+Odległość(x1, 0.39) = |0.21 - 0.39| = 0.18
+Odległość(x1, 0.12) = |0.21 - 0.12| = 0.09
+Odległość(x1, 0.73) = |0.21 - 0.73| = 0.52
+Odległość(x1, 0.03) = |0.21 - 0.03| = 0.18
+Odległość(x1, 0.69) = |0.21 - 0.69| = 0.48
+Odległość(x1, 0.24) = |0.21 - 0.24| = 0.03
+Wybierz k najbliższych sąsiadów do x1.
+
+Najbliżsi sąsiedzi dla x1 (k = 3): [0.12, 0.24, 0.03]
+Oblicz średnią wartość odpowiadającą wybranym sąsiadom.
+
+Średnia dla sąsiadów: (0.09 + 0.08 + 0.84) / 3 = 0.30333333
+Oczekiwana wartość dla x1 = 0.21, korzystając z metody k-NN dla k = 3, wynosi 0.30333333.
+
+Powtarzając te same kroki dla x2 = 0.16:
+
+Oblicz odległości między x2 a każdym punktem w zbiorze uczącym.
+
+Odległość(x2, x) = |x2 - x|
+Odległości dla x2:
+
+Odległość(x2, 0.39) = |0.16 - 0.39| = 0.23
+Odległość(x2, 0.12) = |0.16 - 0.12| = 0.04
+
+Wybierz k najbliższych sąsiadów do x2.
+
+Najbliżsi sąsiedzi dla x2 (k = 3): [0.12, 0.03, 0.24]
+Oblicz średnią wartość odpowiadającą wybranym sąsiadom.
+
+Średnia dla sąsiadów: (0.09 + 0.84 + 0.08) / 3 = 0.30333333
+Oczekiwana wartość dla x2 = 0.16, korzystając z metody k-NN dla k = 3, również wynosi 0.30333333.
+
+Podsumowując, oczekiwane wartości dla danych x1 = 0.21 i x2 = 0.16, używając metody najbliższych sąsiadów (k-NN) dla k = 3, wynoszą obie 0.30333333.
+```
+```
+Podaj mapę cech generowaną przez dwuwymiarową funkcję konwolucyjną dla następującej mapy (obrazu):
+[[0, 1, 0, 1, 0][1, 0, 0, 0, 1][1, 0, 1, 0, 1][1, 1, 0, 1, 0][ 0, 1 , 0, 0, 0]]
+jeżeli filtr zedefiniowany jest nastepująco:
+[[0 ,0 ,0][1, 1, 1][0, 0, 0]]
+a funkcja uruchamiana jest bez rozkroku (stride = 1) i z wypełnieniem zerami (padding=SAME).
+Zaprezentuj rozwiązanie krok po kroku
+```
