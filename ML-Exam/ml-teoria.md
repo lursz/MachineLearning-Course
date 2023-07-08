@@ -1371,3 +1371,92 @@ Oczekiwana wartość dla punktu [0.21, 0.16] jest średnią tych trzech wartośc
 
 Przy użyciu metody najbliższych sąsiadów dla k = 3, oczekiwana wartość dla punktu [0.21, 0.16] wynosi 0.45.
 ```
+
+## All algorithms complexity
+| Algorithm                 | Memory Complexity             | Time Complexity            | Explanation                                                                                                                     |
+|---------------------------|-------------------------------|-----------------------------|---------------------------------------------------------------------------------------------------------------------------------|
+| Linear Regression         | O(1)                          | O(n)                        | Linear regression is a simple algorithm that calculates a line that best fits the given data points, making it computationally efficient with a constant memory requirement. |
+| Logistic Regression       | O(1)                          | O(n)                        | Logistic regression is similar to linear regression, but with a sigmoid activation function. It has the same memory and time complexities as linear regression.                            |
+| Decision Trees            | O(n)                          | O(n * m log(m))             | Decision trees recursively split the data based on features. The memory complexity is proportional to the number of training examples, while time complexity depends on the depth and number of splits. |
+| Random Forests            | O(n * m)                      | O(n * m log(m))             | Random forests are an ensemble of decision trees. The memory complexity is higher as it stores multiple trees, but the time complexity remains similar to decision trees.                  |
+| Support Vector Machines   | O(n^2)                        | O(n^3)                      | Support Vector Machines (SVMs) construct a hyperplane to separate data points. The memory complexity is quadratic due to the kernel matrix, and the time complexity is cubic.                  |
+| K-Nearest Neighbors (KNN) | O(n)                          | O(n log(n))                 | KNN classifies instances based on the majority class of its nearest neighbors. It has a linear memory complexity but a logarithmic time complexity for efficient nearest neighbor search.    |
+| Naive Bayes               | O(n)                          | O(n * m)                    | Naive Bayes is a probabilistic classifier. It has linear memory complexity and linear time complexity, where n is the number of training examples and m is the number of features.     |
+| Neural Networks           | O(m) - O(m^2)                 | O(k * m * n) - O(k * m^2)  | Neural networks have varying memory complexity depending on the number of parameters (weights and biases). Time complexity depends on the number of layers and the training algorithm used. |
+| Gradient Boosting         | O(n)                          | O(n * m * T)                | Gradient Boosting combines weak learners in an iterative manner. Memory complexity is linear, and time complexity depends on the number of training examples, features, and iterations (T).    |
+
+## All algorithms steps
+1. Linear Regression:
+   - Step 1: Calculate the mean of the input features and the target variable.
+   - Step 2: Calculate the covariance between the input features and the target variable.
+   - Step 3: Calculate the slope (β1) using the covariance divided by the variance of the input features.
+   - Step 4: Calculate the intercept (β0) using the mean of the target variable and the slope.
+
+2. Logistic Regression:
+   - Step 1: Initialize the weights and biases.
+   - Step 2: Calculate the weighted sum of the input features.
+   - Step 3: Apply the sigmoid activation function to obtain the predicted probabilities.
+
+3. Decision Trees:
+   - Step 1: Select the best feature to split the data based on a criterion (e.g., information gain or Gini impurity).
+   - Step 2: Split the data into two branches based on the selected feature and its threshold value.
+   - Step 3: Repeat steps 1 and 2 recursively for each branch until a stopping condition is met.
+
+4. Random Forests:
+   - Step 1: Create multiple decision trees using different subsets of the training data (bootstrapping) and random feature subsets.
+   - Step 2: For a new input, predict the label using each decision tree and assign the majority vote as the final prediction.
+
+5. Support Vector Machines (SVM):
+   - Step 1: Transform the input data using a kernel function (e.g., polynomial or Gaussian).
+   - Step 2: Find the hyperplane that maximally separates the transformed data points while minimizing the classification error.
+
+6. K-Nearest Neighbors (KNN):
+   - Step 1: Choose the number of neighbors (k).
+   - Step 2: Calculate the distance between the input instance and all training instances.
+   - Step 3: Select the k nearest neighbors based on the calculated distances.
+   - Step 4: Classify the input instance based on the majority class of the selected neighbors.
+
+7. Naive Bayes:
+   - Step 1: Calculate the prior probability of each class based on the training data.
+   - Step 2: Calculate the conditional probability of each feature given each class.
+   - Step 3: For a new instance, calculate the posterior probability of each class using Bayes' theorem.
+   - Step 4: Classify the instance based on the class with the highest posterior probability.
+
+
+## All algorithms when to use
+**1. Linear Regression**:
+- Description: Linear regression is a simple algorithm used for predicting continuous values based on a linear relationship between input features and the target variable. It calculates a line that best fits the given data points.
+- Use Case: Linear regression is suitable when there is a linear relationship between the input features and the target variable. It is often used for tasks such as price prediction, demand forecasting, or trend analysis.
+- Example: Suppose you have a dataset with historical housing prices and corresponding features like square footage and number of bedrooms. You can use linear regression to predict the price of a new house based on its square footage and number of bedrooms.
+
+**2. Logistic Regression**:
+- Description: Logistic regression is a classification algorithm used for predicting binary or multi-class labels. It models the probability of an instance belonging to a particular class using a logistic function.
+- Use Case: Logistic regression is suitable when dealing with binary or multi-class classification problems. It is commonly used in spam detection, disease diagnosis, sentiment analysis, or customer churn prediction.
+- Example: Suppose you have a dataset of customer feedback labeled as positive, neutral, or negative. Using logistic regression, you can predict the sentiment of new customer reviews based on their textual content.
+
+**3. Decision Trees**:
+- Description: Decision trees are versatile algorithms that recursively split the data based on features to make predictions. Each internal node represents a feature test, and each leaf node represents a predicted label.
+- Use Case: Decision trees are suitable for both classification and regression tasks. They are effective in capturing complex relationships and handling both numerical and categorical features. Decision trees are commonly used in credit scoring, customer segmentation, or medical diagnosis.
+- Example: Suppose you have a dataset of customer information, including age, income, and buying habits. You can use a decision tree to predict whether a customer will make a purchase based on their characteristics.
+
+**4. Random Forests**:
+- Description: Random forests are ensemble models that combine multiple decision trees. Each tree is trained on a different subset of the training data and a random subset of features, and the final prediction is determined by majority voting.
+- Use Case: Random forests are suitable when dealing with complex and high-dimensional data. They are effective in reducing overfitting and improving generalization. Random forests are commonly used in image classification, credit risk analysis, or anomaly detection.
+- Example: Suppose you have a dataset of credit card transactions labeled as fraudulent or legitimate. You can use a random forest to detect fraudulent transactions based on various transaction features like amount, location, and time.
+
+**5. Support Vector Machines (SVM)**:
+- Description: Support Vector Machines construct a hyperplane that maximally separates data points of different classes in a high-dimensional space. SVMs can also handle non-linear decision boundaries using kernel functions.
+- Use Case: SVMs are suitable for binary classification tasks with a clear margin of separation between classes. They are effective when dealing with complex and non-linear data. SVMs are commonly used in image recognition, text classification, or bioinformatics.
+- Example: Suppose you have a dataset of email messages labeled as spam or non-spam. You can use an SVM to classify new email messages as spam or non-spam based on their content and features like word frequency.
+
+**6. K-Nearest Neighbors (KNN)**:
+- Description: K-Nearest Neighbors is a lazy learning algorithm that classifies instances based on the majority class of its k nearest neighbors in the feature space. The distance metric used determines the "closeness" of instances.
+- Use Case: KNN is suitable for both classification and regression tasks. It is effective when dealing with locally clustered data and does not assume any underlying distribution. KNN is commonly used in recommendation systems, anomaly detection, or pattern recognition.
+- Example: Suppose you have a dataset of online shopping transactions labeled as fraudulent or legitimate. You can use KNN to classify new transactions as fraudulent or legitimate based on their similarity to previously observed transactions.
+
+**7. Naive Bayes**:
+- Description: Naive Bayes is a probabilistic classifier based on Bayes' theorem. It assumes that features are conditionally independent given the class labels. Naive Bayes models the joint probability distribution of features and labels.
+- Use Case: Naive Bayes is suitable for text classification, document categorization, or spam filtering tasks. It is computationally efficient, requires less training data, and performs well even with high-dimensional feature spaces.
+- Example: Suppose you have a dataset of emails labeled as spam or non-spam, and each email is represented by word frequency features. You can use Naive Bayes to classify new emails as spam or non-spam based on the occurrence of words in the email.
+
+These are general descriptions and use cases for each algorithm. It's important to consider the specific characteristics of your problem, the nature of your data, and perform experimentation and evaluation to determine the best algorithm for your specific scenario.
