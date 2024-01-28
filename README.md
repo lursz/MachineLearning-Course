@@ -21,10 +21,10 @@ This repository contains full Machine Learning course, held on the Computer Scie
 
 
 ## Some Notes
-<details>
-<summary>ML Notes </summary>
 
-### SVM (Support vector machine)
+<details>
+<summary>SVM (Support vector machine)</summary>
+
 - Not all datapoints are linearly separable on lower dimension
 - Transform such dataset to a higher dimensional space where it can be linearly separable by a hyperplane
 - Support vectors: 
@@ -45,7 +45,11 @@ This repository contains full Machine Learning course, held on the Computer Scie
 - Stochastic gradient descent (SGD) : 
     - Similar to SVM, but scales well for large dataset
     - how : uses gradient descent to find out the maximised margin among possible margins.
-### Trees
+</details>
+
+<details>
+<summary>Trees </summary>
+	
 - Sequence of if-else question
 - Consists of hierarchy of nodes. Each node raise question or prediction.
 - Root node : No parent
@@ -80,7 +84,11 @@ This repository contains full Machine Learning course, held on the Computer Scie
     - Aggregate predictions of individual models (eg: hard-voting)
     - One model's weakness is covered by another model's strength in that particular task
     - Final model is combination of models that are skillfull in different ways
-### Ensemble Learning
+</details>
+
+<details>
+<summary>Ensemble Learning</summary>
+	
 - Limitations of simple decision tree:
     - Can only produce orthogonal decision boundaries
     - Sensitive to small variations in training set
@@ -124,9 +132,11 @@ This repository contains full Machine Learning course, held on the Computer Scie
         - Stochastic gradient boosting (sampling without replacement on gradient boosting to increase variance)
             - Gradient boosting problem : May lead to CARTs using the same split points and maybe the same features which may lead to increased bias. This may lead to underfitting problem.
             - Goal : to reduce bias and increase variance.
+</details>
 
-
-### Neural Network 
+<details>
+<summary>Neural Networks</summary>
+	
 Step by step:
 
 There is a matrix of nodes like this:
@@ -158,7 +168,7 @@ After all that you put it in an activation function.
 ```
 tanh(.52) ---> data for the next node
 ```
-Everything i showed above was just the caclulation for the 
+Everything was just the caclulation for the 
 first node in the second layer though so the matrix
 would look like this
 after all that.
@@ -180,7 +190,11 @@ has lots of weights each corresponding to a node in the last layer.
 Does each node have a bias?
 Yes each node has only one bias.
 
-### Convolutional Neural Network
+</details>
+
+
+<details>
+<summary>Convolutional Neural Networks</summary>
 
 - Similar to neural networks
     - normal neural networks take N X 1  inputs for N no of columns
